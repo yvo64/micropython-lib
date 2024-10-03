@@ -1,3 +1,15 @@
+
+This branch contains some additional and customized packages:
+
+| Directory                          | Package                                                |
+| ---------------------------------- | ------------------------------------------------------ |
+| micropython/drivers/sensor/dht     | Additonal class DHT with new interface                 |
+| micropython/drivers/sensor/sht     | Driver for SHT3x/SHT4x temperature/humidity sensors    |
+| micropython/drivers/sensor/aht     | Driver for AHT20/DHT20 temperature/humidity sensors    |
+| micropython/drivers/sensor/bme280  | Driver for BME280 temperature/humidity/pressure sensor |
+| micropython/drivers/sensor/tsl2591 | Driver for TSL2591 ambient light sensor                |
+
+
 # micropython-lib
 
 This is a repository of packages designed to be useful for writing MicroPython
