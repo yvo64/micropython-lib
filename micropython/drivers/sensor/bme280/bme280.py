@@ -87,7 +87,9 @@ class BME280:
     # @return temperature[raw], temperature[°C], humidity[raw], humidity[%RH], pressure[raw], pressure[hPa]
     def get_measure_results(self):
         status = self._read(0xF3)
-        if status == 0x00:
+        if status != 0x00:
+            return None, None, None, None, None, None
+        else:
             t_raw = self._read(0xFA, 3) >> 4
             var1 = (((t_raw >> 3) - (self.dig_T1 << 1)) * self.dig_T2) >> 11
             # var2 = (((((t_raw >> 4) - self.dig_T1) * ((t_raw >> 4) - self.dig_T1)) >> 12) * self.dig_T3) >> 14
@@ -138,6 +140,3 @@ class BME280:
                 p_int = ((p_int + var1 + var2) >> 8) + (self.dig_P7 << 4)
                 p_float = round(p_int / 25600, 2)
             return t_raw, t_float, h_raw, h_float, p_raw, p_float
-        else:
-            # OSError: [Errno 5] EIO as long as measurement has not completed
-            return None, None, None, None, None, None
